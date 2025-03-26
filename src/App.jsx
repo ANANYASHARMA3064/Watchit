@@ -11,6 +11,7 @@ function App() {
   const [displayCard, setDisplayCard] = useState(false);
   const [movieData, setMovieData] = useState(null);
   const [watchMovies, setWatchMovies] = useState([])
+  const[isInWatchlist,setisInWatchList]=useState(false)
   useEffect(() => {
     const savedMovies = localStorage.getItem('watchMovies');
     if (savedMovies) {
@@ -108,7 +109,7 @@ function App() {
       {displayMovies && (
         <SideBar handleDisplay={handleDisplay} handleNav={handleNav}  watchMovies={watchMovies}handleCross={handleCross} />
       )}
-      {displayCard && <Card movieData={movieData} watchMovies={watchMovies} handleAdd={handleAdd} />}
+      {displayCard && <Card movieData={movieData} watchMovies={watchMovies} handleAdd={handleAdd} isInWatchlist={isInWatchlist} />}
     </>
   );
 }
