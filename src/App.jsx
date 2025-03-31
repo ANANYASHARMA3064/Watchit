@@ -11,7 +11,8 @@ function App() {
   const [displayCard, setDisplayCard] = useState(false);
   const [movieData, setMovieData] = useState(null);
   const [watchMovies, setWatchMovies] = useState([])
-  const[isInWatchlist,setisInWatchList]=useState(false)
+  const[imdbID,setImdbID]=useState([])
+  
   useEffect(() => {
     const savedMovies = localStorage.getItem('watchMovies');
     if (savedMovies) {
@@ -46,8 +47,10 @@ function App() {
         `https://www.omdbapi.com/?apikey=bd86916e&s=${title}`
       );
       const data = await response.json();
+      console.log("dat:",data)
 
       if (data.Response === 'True') {
+        console.log("uhm:",data.Search)
         return data.Search; // Return the movies array
       } else {
         throw new Error(data.Error);
@@ -57,8 +60,9 @@ function App() {
       return null;
     }
   };
-  function handleAdd(value) {
+  function handleAdd(value,value2) {
     setWatchMovies(prev => [value, ...prev]);
+    setImdbID(prev=>[value2,...prev])
 }
   useEffect(() => {
     console.log("Updated watchMovies:", watchMovies);
@@ -109,7 +113,7 @@ function App() {
       {displayMovies && (
         <SideBar handleDisplay={handleDisplay} handleNav={handleNav}  watchMovies={watchMovies}handleCross={handleCross} />
       )}
-      {displayCard && <Card movieData={movieData} watchMovies={watchMovies} handleAdd={handleAdd} isInWatchlist={isInWatchlist} />}
+      {displayCard && <Card movieData={movieData} watchMovies={watchMovies} handleAdd={handleAdd} imdbID={imdbID}/>}
     </>
   );
 }

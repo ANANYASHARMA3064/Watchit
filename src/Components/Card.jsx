@@ -1,5 +1,5 @@
 
-export default function Card({movieData,watchMovies,handleAdd,isInWatchlist}){
+export default function Card({movieData,watchMovies,handleAdd,imdbID}){
     if (!movieData || movieData.length === 0) {
         return <p>No movies found. Try another search!</p>;
       }
@@ -16,8 +16,8 @@ export default function Card({movieData,watchMovies,handleAdd,isInWatchlist}){
           <p>{movie.Year}</p>
           <hr></hr>
          
-          <button className="adding" onClick={() => handleAdd(movie.Title)}>
-           {watchMovies.includes(movie.Title) ?
+          <button className="adding" onClick={() => handleAdd(movie.Title,movie.imdbID)}>
+           {watchMovies.includes(movie.Title)&&imdbID.includes(movie.imdbID) ?
            (<i class="fa-solid fa-check"></i>)
   
   :(<i className="fa-solid fa-plus"></i>)
