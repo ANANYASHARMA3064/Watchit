@@ -82,7 +82,12 @@ function App() {
       setMovieData(null);
     }
   };
+const handleKeyDown=(event)=>{
+  if (event.key==="Enter"){
+    handleSearchButton();
+  }
 
+}
 
 
   // ✅ Log movieData whenever it updates
@@ -102,6 +107,7 @@ function App() {
             type="text"
             value={movieName}
             onChange={handleSearch}
+            onKeyDown={handleKeyDown}
             placeholder="Enter movie name"
           />
 
