@@ -5,7 +5,7 @@ export default function SideBar({handleNav,handleDisplay,watchMovies,handleCross
         <>
         <div className="sidebar" onClick={()=>{handleDisplay();handleNav();}}>
             
-            <div className="sidebarcontent">
+            <div className="sidebarcontent" onClick={(e) => e.stopPropagation()}>
                 <div className="sidehead">
                 <button onClick={()=>{handleDisplay();handleNav();}}>
                     <i className="fa-solid fa-xmark"></i>

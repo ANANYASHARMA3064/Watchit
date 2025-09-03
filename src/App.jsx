@@ -41,11 +41,14 @@ function App() {
 
   const MovieFetcher = async (title) => {
     if (!title.trim()) return null; // Prevent empty searches
+    console.log(import.meta.env.VITE_API_KEY)
 
     try {
+      
       const response = await fetch(
-        `https://www.omdbapi.com/?apikey=bd86916e&s=${title}`
+        `https://www.omdbapi.com/?apikey=${import.meta.env.VITE_API_KEY}&s=${title}`
       );
+      
       const data = await response.json();
       console.log("dat:",data)
 
@@ -99,6 +102,7 @@ const handleKeyDown=(event)=>{
 }
   return (
     <>
+
       <Header handleDisplay={handleDisplay} handleNav={handleNav} />
       <hr />
       {displayNav && (
@@ -125,6 +129,3 @@ const handleKeyDown=(event)=>{
 }
 
 export default App;
-
-
-

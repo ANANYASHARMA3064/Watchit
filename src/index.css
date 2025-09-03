@@ -1,3 +1,7 @@
+body{
+  width:100vw;
+  height:100vh;
+}
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -103,7 +107,7 @@ position: relative;
   cursor: pointer;
 }
 .sidebar {
-  width: 100%; /* full screen */
+  width: 100vw; /* full screen */
   display: flex;
   justify-content: flex-end;
   position: fixed;
@@ -215,7 +219,9 @@ ul{
   transition-duration: 200ms;
   cursor: pointer;
 }
-
+.BackButton :hover{
+  opacity: 0.7;
+}
 
 @media(min-width:650px){
   .sidebar{
@@ -223,7 +229,7 @@ ul{
     flex-direction: row;
     position:fixed;
     height:100%;
-    width:30%;
+    width:100%;
     top:0;
     right:0;
     justify-content: flex-end;
@@ -232,7 +238,7 @@ ul{
   .sidebarcontent{
     position:relative;
     inset:unset;/*unsets all the previously set values of position*/
-    max-width: 100%;
+    max-width: 30%;
     max-height: 100vh;
     background:black;
     box-shadow: 0 0 40px 1px #030615;
