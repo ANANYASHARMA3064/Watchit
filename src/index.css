@@ -102,25 +102,24 @@ position: relative;
   transition-duration: 200ms;
   cursor: pointer;
 }
-.sidebar{
+.sidebar {
+  width: 100%; /* full screen */
   display: flex;
-  flex-direction: row;
-  position:fixed;
-  height:100%;
-  width:90%;
-  top:0;
-  right:0;
   justify-content: flex-end;
-
+  position: fixed;
+  top: 0;
+  height: 100%;
+  z-index: 40;
 }
+
 .sidebarcontent{
-  width:90%;
+  
   background:black;
   height:100%;
-  width:100%;
+  width:60%;
   flex-direction: column;
   overflow-y: auto;
-  
+  z-index: 50;
 }
 .sidehead{
   display: flex;

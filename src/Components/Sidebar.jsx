@@ -3,7 +3,7 @@ export default function SideBar({handleNav,handleDisplay,watchMovies,handleCross
     
     return(
         <>
-        <div className="sidebar">
+        <div className="sidebar" onClick={()=>{handleDisplay();handleNav();}}>
             
             <div className="sidebarcontent">
                 <div className="sidehead">
