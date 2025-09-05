@@ -10,7 +10,7 @@ export default function Card({movieData,watchMovies,handleAdd,imdbID}){
         <div className="Card">
         <div className="movie-container">
  {movieData.map((movie) => (
-        <div key={movie.imdbID} className="movie-card">
+        <div key={movie.imdbID} className="movie-card" onClick={()=>{}}>
           <img src={movie.Poster !== "N/A" ? movie.Poster : "/placeholder.jpg"} alt={movie.Title} />
           <h3>{movie.Title}</h3>
           <p>{movie.Year}</p>
