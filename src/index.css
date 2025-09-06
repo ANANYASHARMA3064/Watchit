@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 body{
   width:100vw;
   height:100vh;
@@ -149,10 +151,10 @@ position: relative;
   flex-direction: column;
   border-top:2px solid white;
   border-bottom:2px solid white;
-  padding-top:0rem;
+  padding-top:2rem;
   padding-bottom: 1rem;
-  padding-left: 0;
-  margin-left:0;
+  padding-left: 2rem;
+  margin-left: 1rem;
   align-items: stretch;
 
 }
@@ -176,7 +178,7 @@ ul{
 }
 .Card{
   color:white;
-  width:55%;
+  width:95%;
   display: flex;
   justify-content: center;
   
@@ -219,8 +221,13 @@ ul{
   transition-duration: 200ms;
   cursor: pointer;
 }
-.BackButton :hover{
-  opacity: 0.7;
+.movie-card:hover{
+  box-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.3), 
+    0 0 30px rgba(255, 255, 255, 0.2);
+}
+.movie-card img{
+  box-shadow: none 
 }
 
 @media(min-width:650px){

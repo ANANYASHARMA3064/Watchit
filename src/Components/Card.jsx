@@ -1,4 +1,4 @@
-
+import ShowCard from "./ShowCard";
 export default function Card({movieData,watchMovies,handleAdd,imdbID}){
     if (!movieData || movieData.length === 0) {
         return <p>No movies found. Try another search!</p>;
@@ -10,7 +10,7 @@ export default function Card({movieData,watchMovies,handleAdd,imdbID}){
         <div className="Card">
         <div className="movie-container">
  {movieData.map((movie) => (
-        <div key={movie.imdbID} className="movie-card" onClick={()=>{}}>
+        <div key={movie.imdbID} className="movie-card">
           <img src={movie.Poster !== "N/A" ? movie.Poster : "/placeholder.jpg"} alt={movie.Title} />
           <h3>{movie.Title}</h3>
           <p>{movie.Year}</p>

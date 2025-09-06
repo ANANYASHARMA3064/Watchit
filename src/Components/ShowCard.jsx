@@ -1,9 +1,9 @@
 
 
-const ShowCard = ({movieTitle}) => {
+const ShowCard = () => {
   return (
-    <div>
-      
+    <div className="bg-green">
+      <h1>Guddu</h1>
     </div>
   )
 }
