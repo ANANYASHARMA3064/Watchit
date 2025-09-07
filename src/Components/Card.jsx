@@ -44,7 +44,7 @@ export default function Card({ movieData, watchMovies, handleAdd, imdbID }) {
             </div>
           ))}
         </div>
-        {isShowCard && <ShowCard imdbID={selectedMovieID} onClose={()=>{setIsShowCard(false)}}/>}
+        {isShowCard && <ShowCard imdbID={selectedMovieID} onClose={()=>{setIsShowCard(false)}} handleAdd={handleAdd} watchMovies={watchMovies}/>}
       </div>
 
       

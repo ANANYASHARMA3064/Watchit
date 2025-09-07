@@ -1,6 +1,6 @@
 import { useEffect,useState } from "react";
 
-const ShowCard = ({imdbID,onClose}) => {
+const ShowCard = ({imdbID,onClose,handleAdd,watchMovies}) => {
     const [movieData, setMovieData] = useState(null);
 
     const PlotFetcher =async(imdbID)=>{
@@ -40,6 +40,25 @@ const ShowCard = ({imdbID,onClose}) => {
             <p className="italic mb-2">Released: {movieData.Year}</p>
             <p className="mb-4">{movieData.Plot}</p>
             <p className="italic mb-2">Imdb: {movieData.imdbRating}</p>
+            <p className="mb-4">Genre:{movieData.Genre}</p>
+            <div className="border-t-2 border-white ">
+                <button>
+                    <button
+                className="adding"
+                onClick={(e) => {
+                  e.stopPropagation(); 
+                  handleAdd(movieData.Title, movieData.imdbID);
+                }}
+              >
+                {watchMovies.includes(movieData.Title) &&
+                imdbID.includes(movieData.imdbID) ? (
+                  <i className="fa-solid fa-check"></i>
+                ) : (
+                  <i className="fa-solid fa-plus"></i>
+                )}
+              </button>
+                </button>
+            </div>
                 </>
             ):(
                 <p className="text-gray-500">Loading...</p>
