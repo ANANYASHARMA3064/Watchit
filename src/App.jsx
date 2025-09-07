@@ -91,6 +91,10 @@ const handleKeyDown=(event)=>{
   }
 
 }
+const handleBack=()=>{
+    setDisplayCard(false);
+    setDisplayMovies(false);
+  }
 
 
   // ✅ Log movieData whenever it updates
@@ -103,7 +107,7 @@ const handleKeyDown=(event)=>{
   return (
     <>
 
-      <Header handleDisplay={handleDisplay} handleNav={handleNav} />
+      <Header handleDisplay={handleDisplay} handleNav={handleNav} handleBack={handleBack}/>
       <hr />
       {displayNav && (
         <div className="Navbar">
