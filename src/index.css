@@ -116,8 +116,16 @@ position: relative;
   top: 0;
   height: 100%;
   z-index: 40;
+  display: none;
+
+}
+.sidehead{
+  display: block;
 }
 
+.fa-clapperboard {
+  display: block;
+  }
 .sidebarcontent{
   
   background:black;
@@ -209,6 +217,9 @@ ul{
   border: 2px solid white; /* Adds a border */
   border-radius: 10px; /* Smooth corners */
   padding: 1rem; /* Add some spacing */
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
 }
 .adding{
   size:1.5rem;
@@ -250,6 +261,15 @@ ul{
     box-shadow: 0 0 40px 1px #030615;
         
   }
+    .sidebar{
+    display: block;
+  }
+  .sidehead{
+    display: block;
+  }
+  .fa-clapperboard {
+  display: block;
+  }
   .sidebar ul{
     list-style-type:none;
     
@@ -260,7 +280,15 @@ ul{
       grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
     }
   }
-  
+  .sidebar{
+    display: block;
+  }
+  .sidehead{
+    display: block;
+  }
+  .fa-clapperboard {
+  display: block;
+  }
   @media (min-width: 1024px) {
     .movie-container {
       grid-template-columns: repeat(4, 1fr); /* 4 columns on large screens */
@@ -273,4 +301,11 @@ ul{
     width: 80%;  /* Make the input 80% width on smaller screens */
     padding: 1rem; /* Adjust padding for smaller screens */
   }
+    .sidebar{
+    display: block;
+  }
+  .sidehead{
+    display: block;
+  }
+  
 }

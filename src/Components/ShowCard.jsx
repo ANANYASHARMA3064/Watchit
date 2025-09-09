@@ -27,7 +27,8 @@ const ShowCard = ({imdbID,onClose,handleAdd,watchMovies}) => {
   return (
     <div className="fixed bg-black/60 top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center"onClick={onClose}>
        
-        <div className="bg-gradient-to-b from-black to-[#090f33] border-2 border-white rounded-2xl shadow-xl p-6 w-[500px] max-w-[90%] text-white">
+        <div onClick={(event) => event.stopPropagation()} 
+        className="bg-gradient-to-b from-black to-[#090f33] border-2 border-white rounded-2xl shadow-xl p-6 w-[500px] max-w-[90%] text-white flex flex-col justify-center items-center">
             { movieData ?(
                 <>
 
@@ -41,7 +42,7 @@ const ShowCard = ({imdbID,onClose,handleAdd,watchMovies}) => {
             <p className="mb-4">{movieData.Plot}</p>
             <p className="italic mb-2">Imdb: {movieData.imdbRating}</p>
             <p className="mb-4">Genre:{movieData.Genre}</p>
-            <div className="border-t-2 border-white ">
+            <div className="border-t-2 border-white} ">
                 <button>
                     <button
                 className="adding"

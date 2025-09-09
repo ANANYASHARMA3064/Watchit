@@ -1,10 +1,11 @@
+import { Routes, Route, Link } from "react-router-dom";
 export default function Header({ handleDisplay,handleNav,handleBack}) {
   
     return (
      
       <header>
          <button className="border-2 rounded-4xl p-2" onClick={()=>handleBack()} >
-        <i class="fa-solid fa-left-long"></i>
+       <i class="fa-solid fa-house"></i>
       </button>
         <div className="headercomponents">
           <div className="logo">
@@ -15,6 +16,7 @@ export default function Header({ handleDisplay,handleNav,handleBack}) {
             <i className="fa-solid fa-clapperboard"></i>
           </button>
         </div>
+         <Link to="/watchlist">WatchList</Link>
       </header>
     );
   }
