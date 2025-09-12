@@ -1,3 +1,5 @@
+CREATE DATABASE watchlist;
+
 CREATE TABLE watchlist (
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(id),
