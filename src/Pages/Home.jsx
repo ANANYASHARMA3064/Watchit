@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import SideBar from "../Components/Sidebar";
 import Card from "../Components/Card";
 import Header from "../Components/Header";
+import { useNavigate } from 'react-router-dom'
 export default function Home() {
   const [movieName, setMovieName] = useState('');
   const [displayMovies, setDisplayMovies] = useState(false);
