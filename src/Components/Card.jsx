@@ -1,6 +1,7 @@
-// Card.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import ShowCard from "./ShowCard";
+
 
 export default function Card({ movieData, watchMovies, handleAdd, imdbID }) {
   const [isShowCard, setIsShowCard] = useState(false);
