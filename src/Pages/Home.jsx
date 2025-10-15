@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import SideBar from "../Components/Sidebar";
 import Card from "../Components/Card";
 import Header from "../Components/Header";
 import { useNavigate } from 'react-router-dom'
 export default function Home() {
   const [movieName, setMovieName] = useState('');
-  const [displayMovies, setDisplayMovies] = useState(false);
   const [displayNav, setDisplayNav] = useState(true);
   const [displayCard, setDisplayCard] = useState(false);
   const [movieData, setMovieData] = useState(null);
@@ -72,10 +70,6 @@ export default function Home() {
     }
   };
 
-  const handleBack = () => {
-    setDisplayCard(false);
-    setDisplayMovies(false);
-  };
 
   function handleCross(index) {
     setWatchMovies((prev) => prev.filter((_, i) => i !== index));
@@ -84,10 +78,6 @@ export default function Home() {
   return (
 
     <>
-    <Header 
-        handleDisplay={() => setDisplayMovies(prev => !prev)} 
-        handleNav={() => setDisplayNav(prev => !prev)} 
-      />
       <hr />
       {displayNav && (
         <div className="Navbar">
@@ -103,15 +93,6 @@ export default function Home() {
             <i className="fa-solid fa-magnifying-glass"></i>
           </button>
         </div>
-      )}
-
-      {displayMovies && (
-        <SideBar
-          handleDisplay={() => setDisplayMovies(!displayMovies)}
-          handleNav={() => setDisplayNav(!displayNav)}
-          watchMovies={watchMovies}
-          handleCross={handleCross}
-        />
       )}
 
       {displayCard && (
