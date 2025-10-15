@@ -8,8 +8,8 @@ export default function Watchlist() {
     if (savedMovies) setWatchMovies(JSON.parse(savedMovies));
   }, []);
 
-  const handleRemove = (index) => {
-    const updated = watchMovies.filter((_, i) => i !== index);
+  const handleRemove = (imdbID) => {
+    const updated = watchMovies.filter((movie) => movie.imdbID !== imdbID);
     setWatchMovies(updated);
     localStorage.setItem("watchMovies", JSON.stringify(updated));
   };
@@ -20,14 +20,19 @@ export default function Watchlist() {
       {watchMovies.length === 0 ? (
         <p>No movies added yet.</p>
       ) : (
-        <ul>
-          {watchMovies.map((movie, index) => (
-            <li key={index}>
-              {movie}
-              <button onClick={() => handleRemove(index)}>❌</button>
-            </li>
+        <div className="movie-container">
+          {watchMovies.map((movie) => (
+            <div key={movie.imdbID} className="movie-card">
+              <img
+                src={movie.Poster !== "N/A" ? movie.Poster : "/placeholder.jpg"}
+                alt={movie.Title}
+              />
+              <h3>{movie.Title}</h3>
+              <p>{movie.Year}</p>
+              <button onClick={() => handleRemove(movie.imdbID)}>❌ Remove</button>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

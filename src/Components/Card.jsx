@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useState } from "react";
 import ShowCard from "./ShowCard";
 
-
-export default function Card({ movieData, watchMovies, handleAdd, imdbID }) {
+export default function Card({ movieData, watchMovies, imdbID, handleAdd }) {
   const [isShowCard, setIsShowCard] = useState(false);
   const [selectedMovieID, setSelectedMovieID] = useState(null);
+
   if (!movieData || movieData.length === 0) {
     return <p>No movies found. Try another search!</p>;
   }
@@ -18,7 +17,10 @@ export default function Card({ movieData, watchMovies, handleAdd, imdbID }) {
             <div
               key={movie.imdbID}
               className="movie-card"
-              onClick={() => {setIsShowCard(true);setSelectedMovieID(movie.imdbID);}} 
+              onClick={() => {
+                setIsShowCard(true);
+                setSelectedMovieID(movie.imdbID);
+              }}
             >
               <img
                 src={movie.Poster !== "N/A" ? movie.Poster : "/placeholder.jpg"}
@@ -27,28 +29,36 @@ export default function Card({ movieData, watchMovies, handleAdd, imdbID }) {
               <h3>{movie.Title}</h3>
               <p>{movie.Year}</p>
               <hr />
-              <button
-                className="adding"
-                onClick={(e) => {
-                  e.stopPropagation(); 
-                  handleAdd(movie.Title, movie.imdbID);
-                }}
-              >
-                {watchMovies.includes(movie.Title) &&
-                imdbID.includes(movie.imdbID) ? (
-                  <i className="fa-solid fa-check"></i>
-                ) : (
-                  <i className="fa-solid fa-plus"></i>
-                )}
-              </button>
-              
+
+              {/* ADD / CHECK button */}
+            <button
+  className="adding"
+  onClick={(e) => {
+    e.stopPropagation();
+    handleAdd(movie); // pass full movie object
+  }}
+>
+  {watchMovies.some((m) => m.imdbID === movie.imdbID) ? (
+    <i className="fa-solid fa-check"></i>
+  ) : (
+    <i className="fa-solid fa-plus"></i>
+  )}
+</button>
+
             </div>
           ))}
         </div>
-        {isShowCard && <ShowCard imdbID={selectedMovieID} onClose={()=>{setIsShowCard(false)}} handleAdd={handleAdd} watchMovies={watchMovies}/>}
-      </div>
 
-      
+        {/* Popup */}
+        {isShowCard && (
+          <ShowCard
+            imdbID={selectedMovieID}
+            onClose={() => setIsShowCard(false)}
+            handleAdd={handleAdd}
+            watchMovies={watchMovies}
+          />
+        )}
+      </div>
     </div>
   );
 }

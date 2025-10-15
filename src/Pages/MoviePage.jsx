@@ -2,9 +2,20 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Card from "../Components/Card";
 import Navbar from "../Components/Navbar";
-export default function SearchPage({ watchMovies, handleAdd }) {
+export default function SearchPage() {
   const { keyword } = useParams(); // dynamic search keyword
   const [movieData, setMovieData] = useState([]);
+  const [watchMovies, setWatchMovies] = useState([]);
+  const [imdbID, setImdbID] = useState([]);
+function handleAdd(movie) {
+  setWatchMovies((prev) => {
+    // Avoid duplicates by checking imdbID
+    if (prev.some((m) => m.imdbID === movie.imdbID)) return prev;
+    const updated = [movie, ...prev];
+    localStorage.setItem("watchMovies", JSON.stringify(updated));
+    return updated;
+  });
+}
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -32,8 +43,9 @@ export default function SearchPage({ watchMovies, handleAdd }) {
 <Card
   movieData={movieData}
   watchMovies={watchMovies || []}          // make sure it's always an array
+  imdbID={imdbID}
   handleAdd={handleAdd}
-  imdbID={(watchMovies || []).map((m) => m.imdbID)}
+  
 />
 </>
   );
