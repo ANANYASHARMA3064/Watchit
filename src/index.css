@@ -178,18 +178,22 @@ ul{
   cursor: pointer;
   width:100%
 }
-.parent{
-  display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  padding-top: 2rem;
-}
-.Card{
-  color:white;
-  width:95%;
+.parent {
   display: flex;
   justify-content: center;
-  
+  align-items: center;
+  min-height: 100vh;
+  /* remove this line ↓ */
+  /* background-color: #111; */
+}
+
+.Card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;        /* full width now */
+  padding: 2rem;      /* optional spacing from edges */
 }
 .cardcontents{
   display:flex;
@@ -205,22 +209,28 @@ ul{
   transition-duration: 200ms;
   cursor: pointer;
 }
-.movie-container{
-  padding-top:4rem;
+.movie-container {
   display: grid;
-  grid-template-columns: repeat(1, 1fr); /* Default: 1 column */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  width: 100%;
+  justify-items: center;
+}
 
-  gap:2rem;
-  flex:1;
+.movie-card {
+  min-height: 400px;  /* taller for image + info */
+  padding: 20px;
+  background: linear-gradient(to bottom, black, #090f33);
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: 1px solid white;
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+  width: 100%;  /* fills the grid column */
 }
-.movie-card{
-  border: 2px solid white; /* Adds a border */
-  border-radius: 10px; /* Smooth corners */
-  padding: 1rem; /* Add some spacing */
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
-}
+
+
 .adding{
   size:1.5rem;
   background: transparent;
@@ -231,13 +241,13 @@ ul{
   transition-duration: 200ms;
   cursor: pointer;
 }
-.movie-card:hover{
-  box-shadow: 
-    0 0 20px rgba(255, 255, 255, 0.3), 
-    0 0 30px rgba(255, 255, 255, 0.2);
+.movie-card:hover {
+  transform: scale(1.05);
 }
-.movie-card img{
-  box-shadow: none 
+.movie-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
 }
 
 @media(min-width:650px){

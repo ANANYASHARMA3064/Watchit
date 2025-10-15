@@ -10,6 +10,8 @@ function App() {
     <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/watchlist" element={<WatchList/>} />
+        <Route path="/search/:keyword" element={<SearchPage />} />
+        <Route path="/movie/:imdbID" element={<SearchPage />} />
       </Routes>
    
      </> 
