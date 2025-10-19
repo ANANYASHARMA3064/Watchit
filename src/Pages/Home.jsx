@@ -14,16 +14,7 @@ export default function Home() {
   // const handleKeyDown = (e) => {
   //   if (e.key === "Enter") handleSearch();
   // };
-  const [watchMovies, setWatchMovies] = useState([]);
-  const [imdbID, setImdbID] = useState([]);
-  function handleAdd(title, id) {
-  setWatchMovies((prev) =>
-    prev.includes(title) ? prev : [title, ...prev]
-  );
-  setImdbID((prev) =>
-    prev.includes(id) ? prev : [id, ...prev]
-  );
-}
+  
 
   return (
     <>

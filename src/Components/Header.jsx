@@ -17,6 +17,9 @@ export default function Header() {
         <Link to="/watchlist" className="text-lg font-semibold hover:text-gray-400 transition">
           Watchlist
         </Link>
+        <Link to="/Favourites" className="text-lg font-semibold hover:text-gray-400 transition">
+          Favourites
+        </Link>
       </div>
     </header>
   );
