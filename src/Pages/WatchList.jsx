@@ -16,7 +16,9 @@ export default function Watchlist() {
 
   return (
     <div className="watchlist-page">
-      <h1>Your Watchlist 🎬</h1>
+    <h1 class="text-center text-5xl font-extrabold text-white tracking-wide drop-shadow-[0_0_10px_rgba(255,255,255,0.15)] transform rotate-[-1deg]">
+  Your Watchlist
+</h1>
       {watchMovies.length === 0 ? (
         <p>No movies added yet.</p>
       ) : (

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import LoginButton from "./LoginButton";
 export default function Header() {
   return (
     <header className="flex justify-between items-center px-6 py-4 bg-black text-white shadow-md">
@@ -20,6 +20,7 @@ export default function Header() {
         <Link to="/Favourites" className="text-lg font-semibold hover:text-gray-400 transition">
           Favourites
         </Link>
+        <LoginButton/>
       </div>
     </header>
   );
