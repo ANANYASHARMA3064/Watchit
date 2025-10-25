@@ -4,10 +4,10 @@ export default function Header() {
   return (
     <header className="flex justify-between items-center px-6 py-4 bg-black text-white shadow-md">
       {/* LEFT SIDE - Logo */}
-      <div className="flex items-center gap-2">
-        <i className="fa-solid fa-couch text-xl"></i>
-        <h1 className="text-2xl font-light tracking-wide">Watchit</h1>
-      </div>
+      <Link to="/" className="flex items-center gap-2">
+  <i className="fa-solid fa-couch text-xl"></i>
+  <h1 className="text-2xl font-light tracking-wide">Watchit</h1>
+</Link>
 
       {/* RIGHT SIDE - Links */}
       <div className="flex gap-6 items-center">
