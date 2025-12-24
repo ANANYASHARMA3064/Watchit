@@ -1,12 +1,18 @@
-import { useEffect, useState } from "react";
+ import { useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Watchlist() {
   const [watchMovies, setWatchMovies] = useState([]);
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) return <div>Loading...</div>;
 
   useEffect(() => {
+     if (isAuthenticated) {
     const savedMovies = localStorage.getItem("watchMovies");
     if (savedMovies) setWatchMovies(JSON.parse(savedMovies));
-  }, []);
+  }
+}, [isAuthenticated]);
 
   const handleRemove = (imdbID) => {
     const updated = watchMovies.filter((movie) => movie.imdbID !== imdbID);
@@ -16,10 +22,13 @@ export default function Watchlist() {
 
   return (
     <div className="watchlist-page">
-    <h1 class="text-center text-5xl font-extrabold text-white tracking-wide drop-shadow-[0_0_10px_rgba(255,255,255,0.15)] transform rotate-[-1deg]">
-  Your Watchlist
-</h1>
-      {watchMovies.length === 0 ? (
+      <h1 className="text-center text-5xl font-extrabold text-white tracking-wide drop-shadow-[0_0_10px_rgba(255,255,255,0.15)] transform rotate-[-1deg]">
+        Your Watchlist
+      </h1>
+
+      {!isAuthenticated ? (
+        <h1>LOGIN FIRST!</h1>
+      ) : watchMovies.length === 0 ? (
         <p>No movies added yet.</p>
       ) : (
         <div className="movie-container">
@@ -39,3 +48,5 @@ export default function Watchlist() {
     </div>
   );
 }
+
+

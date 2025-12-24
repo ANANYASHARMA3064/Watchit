@@ -19,7 +19,7 @@ Built for practice in frontend development and API integration.
 - JavaScript (ES6+)  
 - HTML5 & CSS3  
 - OMDb API  
-
+- PostgresSql
 ---
 
 ## 📦 Installation & Setup
