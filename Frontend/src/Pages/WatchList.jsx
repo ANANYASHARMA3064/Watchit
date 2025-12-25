@@ -1,9 +1,10 @@
  import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import { getWatchlist,addMovie,removeMovie } from "../../../Backend/SupabaseFunctions";
 export default function Watchlist() {
-  const [watchMovies, setWatchMovies] = useState([]);
+  
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const [watchMovies, setWatchMovies] = useState([]);
 
   if (isLoading) return <div>Loading...</div>;
 
