@@ -1,4 +1,4 @@
-import { supabase } from './SupabaseClient'
+import { supabase } from './SupabaseClient.js'
 export async function addMovie(movie,user){
     const {data,error} = await supabase
         .from('watchlist')
