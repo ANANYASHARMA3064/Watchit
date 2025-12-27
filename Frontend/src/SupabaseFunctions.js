@@ -31,4 +31,3 @@ export async function getWatchlist(user) {
   else return data; // Array of movies
 }
 
-

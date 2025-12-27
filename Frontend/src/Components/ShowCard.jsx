@@ -1,5 +1,6 @@
 import { useEffect,useState } from "react";
-
+import { useAuth0 } from "@auth0/auth0-react";
+import { addMovie } from "../SupabaseFunctions";
 const ShowCard = ({imdbID,onClose,handleAdd,watchMovies}) => {
     const [movieData, setMovieData] = useState(null);
 
