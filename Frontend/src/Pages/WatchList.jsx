@@ -1,6 +1,7 @@
  import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getWatchlist,addMovie,removeMovie } from "../SupabaseFunctions";
+
 export default function Watchlist() {
   
   const { user, isAuthenticated, isLoading } = useAuth0();
