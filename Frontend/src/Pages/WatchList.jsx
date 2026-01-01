@@ -42,7 +42,7 @@ export default function Watchlist() {
               />
               <h3>{movie.Title}</h3>
               <p>{movie.Year}</p>
-              <button onClick={() => handleRemove(movie.imdbID)}>❌ Remove</button>
+              <button onClick={() => {handleRemove(movie.imdbID);removeMovie(user,movie.imdbID)}}>❌ Remove</button>
             </div>
           ))}
         </div>
