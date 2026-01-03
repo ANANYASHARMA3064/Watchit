@@ -2,7 +2,7 @@ import { supabase } from './SupabaseClient.js'
 export async function addMovie(movie,user){
     const {data,error} = await supabase
         .from('watchlist')
-        .insert([{user_id: user,
+        .insert([{user_id: user.sub,
       imdb_id: movie.imdbID,
       title: movie.Title,
       year: movie.Year,

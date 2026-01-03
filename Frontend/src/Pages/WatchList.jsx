@@ -6,8 +6,18 @@ export default function Watchlist() {
   
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [watchMovies, setWatchMovies] = useState([]);
+  const [data, setData] = useState([]);
 
-  if (isLoading) return <div>Loading...</div>;
+
+  
+  useEffect(() => {
+  const fetchWatchlist = async () => {
+    const watchlist = await getWatchlist(user);
+    setData(watchlist);
+  };
+
+  if (user) fetchWatchlist();
+}, [user]);
 
   useEffect(() => {
      if (isAuthenticated) {
@@ -16,11 +26,14 @@ export default function Watchlist() {
   }
 }, [isAuthenticated]);
 
+if (isLoading) return <div>Loading...</div>;
   const handleRemove = (imdbID) => {
     const updated = watchMovies.filter((movie) => movie.imdbID !== imdbID);
     setWatchMovies(updated);
     localStorage.setItem("watchMovies", JSON.stringify(updated));
   };
+ 
+
 
   return (
     <div className="watchlist-page">
@@ -28,21 +41,24 @@ export default function Watchlist() {
         Your Watchlist
       </h1>
 
+
       {!isAuthenticated ? (
         <h1>LOGIN FIRST!</h1>
       ) : watchMovies.length === 0 ? (
         <p>No movies added yet.</p>
       ) : (
+        
         <div className="movie-container">
-          {watchMovies.map((movie) => (
-            <div key={movie.imdbID} className="movie-card">
+          
+          {data.map((movie) => (
+            <div key={movie.imdb_id} className="movie-card">
               <img
-                src={movie.Poster !== "N/A" ? movie.Poster : "/placeholder.jpg"}
-                alt={movie.Title}
+                src={movie.poster !== "N/A" ? movie.poster : "/placeholder.jpg"}
+                alt={movie.title}
               />
-              <h3>{movie.Title}</h3>
-              <p>{movie.Year}</p>
-              <button onClick={() => {handleRemove(movie.imdbID);removeMovie(user,movie.imdbID)}}>❌</button>
+              <h3>{movie.title}</h3>
+              <p>{movie.year}</p>
+              <button onClick={() => {handleRemove(movie.imdb_id);removeMovie(user,movie.imdb_id)}}>❌</button>
             </div>
           ))}
         </div>
