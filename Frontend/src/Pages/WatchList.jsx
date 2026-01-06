@@ -14,24 +14,17 @@ export default function Watchlist() {
   const fetchWatchlist = async () => {
     const watchlist = await getWatchlist(user);
     setData(watchlist);
+    console.log(data);
   };
 
   if (user) fetchWatchlist();
 }, [user]);
-
-  useEffect(() => {
-     if (isAuthenticated) {
-    const savedMovies = localStorage.getItem("watchMovies");
-    if (savedMovies) setWatchMovies(JSON.parse(savedMovies));
-  }
-}, [isAuthenticated]);
-
+const handleRemove = async (imdbId) => {
+  await removeMovie(user, imdbId);
+  const watchlist = await getWatchlist(user);
+  setData(watchlist);
+};
 if (isLoading) return <div>Loading...</div>;
-  const handleRemove = (imdbID) => {
-    const updated = watchMovies.filter((movie) => movie.imdbID !== imdbID);
-    setWatchMovies(updated);
-    localStorage.setItem("watchMovies", JSON.stringify(updated));
-  };
  
 
 
@@ -44,7 +37,7 @@ if (isLoading) return <div>Loading...</div>;
 
       {!isAuthenticated ? (
         <h1>LOGIN FIRST!</h1>
-      ) : watchMovies.length === 0 ? (
+      ) : data.length === 0 ? (
         <p>No movies added yet.</p>
       ) : (
         
@@ -58,7 +51,7 @@ if (isLoading) return <div>Loading...</div>;
               />
               <h3>{movie.title}</h3>
               <p>{movie.year}</p>
-              <button onClick={() => {handleRemove(movie.imdb_id);removeMovie(user,movie.imdb_id)}}>❌</button>
+              <button onClick={() => {handleRemove(movie.imdb_id)}}>❌</button>
             </div>
           ))}
         </div>
