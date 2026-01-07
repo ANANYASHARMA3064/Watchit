@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import ShowCard from "./ShowCard";
 import { addMovie,getWatchlist} from "../SupabaseFunctions";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -8,14 +8,31 @@ export default function Card({ movieData, imdbID, handleAdd }) {
   const [selectedMovieID, setSelectedMovieID] = useState(null);
    const [watchMovies, setWatchMovies] = useState([]);
   const { user, isAuthenticated, isLoading } = useAuth0();
+  useEffect(() => {
+  if (!user) return;
+
+  const loadWatchlist = async () => {
+    const data = await getWatchlist(user);
+    setWatchMovies(data || []);
+  };
+
+  loadWatchlist();
+}, [user]);
 
   if (!movieData || movieData.length === 0) {
     return <p>No movies found. Try another search!</p>;
   }
   const adding = async (movie,user) => {
-    await addMovie(movie,user);
-    const data = await getWatchlist(user);
-    setWatchMovies(data);
+    const alreadyAdded = watchMovies.some(
+    (m) => m.imdb_id === movie.imdbID
+  );
+    
+    
+
+  if (alreadyAdded) return;
+  await addMovie(movie,user);
+  
+    setWatchMovies((prev) => [...prev, { imdb_id: movie.imdbID }]);
   };
 
   return (
@@ -47,7 +64,7 @@ export default function Card({ movieData, imdbID, handleAdd }) {
     await adding(movie, user);
   }}
 >
-  {watchMovies.some((m) => m.imdbID === movie.imdbID) ? (
+  {watchMovies.some((m) => m.imdb_id === movie.imdbID) ? (
     <i className="fa-solid fa-check"></i>
   ) : (
     <i className="fa-solid fa-plus"></i>
