@@ -1,16 +1,22 @@
 import { useState } from "react";
 import ShowCard from "./ShowCard";
-import { addMovie} from "../SupabaseFunctions";
+import { addMovie,getWatchlist} from "../SupabaseFunctions";
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function Card({ movieData, watchMovies, imdbID, handleAdd }) {
+export default function Card({ movieData, imdbID, handleAdd }) {
   const [isShowCard, setIsShowCard] = useState(false);
   const [selectedMovieID, setSelectedMovieID] = useState(null);
+   const [watchMovies, setWatchMovies] = useState([]);
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   if (!movieData || movieData.length === 0) {
     return <p>No movies found. Try another search!</p>;
   }
+  const adding = async (movie,user) => {
+    await addMovie(movie,user);
+    const data = await getWatchlist(user);
+    setWatchMovies(data);
+  };
 
   return (
     <div className="parent">
@@ -36,19 +42,9 @@ export default function Card({ movieData, watchMovies, imdbID, handleAdd }) {
               {/* ADD / CHECK button */}
             <button
   className="adding"
-  onClick={(e) => {
+  onClick={async (e) => {
     e.stopPropagation();
-    if (!isAuthenticated || !user) {
-    alert("Please log in to add movies");
-    return;
-  }
-
-  if (watchMovies.some((m) => m.imdbID === movie.imdbID)) {
-    return; // already added, do nothing
-  }
-
-  handleAdd(movie);
-  addMovie(movie, user);
+    await adding(movie, user);
   }}
 >
   {watchMovies.some((m) => m.imdbID === movie.imdbID) ? (

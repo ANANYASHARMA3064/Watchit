@@ -42,9 +42,9 @@ function handleAdd(movie) {
     
 <Card
   movieData={movieData}
-  watchMovies={watchMovies || []}          // make sure it's always an array
+         // make sure it's always an array
   imdbID={imdbID}
-  handleAdd={handleAdd}
+  
   
 />
 </>
